@@ -30,7 +30,10 @@ public class BinanceCoinAddressValidator implements ICryptoAddressValidator {
     public boolean isAddressValid(String address) {
         try {
             address = getAddressWithoutTag(address);
-            // Binance Smart Chain
+            // BNB Smart Chain is EVM-compatible and uses Ethereum-style addresses.
+            // Address format: 20 bytes represented as 40 hexadecimal characters prefixed with "0x".
+            // https://docs.bnbchain.org/docs/learn/intro/
+            // https://ethereum.org/en/developers/docs/accounts/
             if (address.startsWith("0x") && address.length() == 42) {
                 return address.matches("^0x[0-9a-fA-F]{40}$");
             }
